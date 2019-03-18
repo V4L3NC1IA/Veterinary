@@ -1,10 +1,15 @@
 package model;
+import java.util.ArrayList;
+
 public class Client{
 	//Attributes
 	private String name;
 	private int id;
 	private int address;
 	private int telephoneContac;
+	
+	//Relations
+	private ArrayList <Pet> pets;
 
 	//method main
 	public Client(String theName,int theId, int theAddress, int ThetelephoneContac){

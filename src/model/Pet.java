@@ -1,10 +1,15 @@
 package model;
+
 public class Pet{
 	//attributes
 	private String name;
 	private String typeOfPet;
 	private int age;
 	private double weight;
+	public final static char DOG = 'D';
+	public final static char CAT = 'C';
+	public final static char BIRD = 'B';
+	public final static char OTHER = 'O';
 	
 	//Method main
 	public Pet(String theName,String theTypeOfPet, int theAge, double theWeight){
