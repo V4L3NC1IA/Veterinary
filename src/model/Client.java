@@ -10,13 +10,15 @@ public class Client{
 	
 	//Relations
 	private ArrayList <Pet> pets;
+	
 
 	//method main
-	public Client(String theName,int theId, int theAddress, int ThetelephoneContac){
-		name = theName;
-		id = theId;
-		address = theAddress;
-		telephoneContac = ThetelephoneContac; 
+	public Client(String theName,int theId, int theAddress, int ThetelephoneContac, ArrayList<Pet> pets){
+		this.name = name;
+		this.id = id;
+		this.address = address;
+		this.telephoneContac = telephoneContac;
+		this.pets= pets;
 	}
 	//Setters and Getters
 	public String getName (){
@@ -42,5 +44,11 @@ public class Client{
 	}
 	public void setTelephoneContac(int telephoneContac){
 		this.telephoneContac=telephoneContac;
+	}
+	public ArrayList<Pet> getPets(){
+		return pets;
+	}
+	public void setList(ArrayList<Pet> pets){
+		this.pets = pets;
 	}
 }

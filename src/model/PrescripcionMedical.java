@@ -40,4 +40,13 @@ public class PrescripcionMedical{
 	public void setFrequencyDose(double frequencyDose){
 		this.frequencyDose = frequencyDose;
 	}
+	
+	
+	public double CostForMecines(){
+		double CostMedicine= 0;
+		CostMedicine += (dose * costForDose);
+		
+		return CostMedicine;
+	}
 }
+

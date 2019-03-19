@@ -6,10 +6,10 @@ public class Pet{
 	private String typeOfPet;
 	private int age;
 	private double weight;
-	public final static char DOG = 'D';
-	public final static char CAT = 'C';
-	public final static char BIRD = 'B';
-	public final static char OTHER = 'O';
+	public final static String DOG = "Dog";
+	public final static String CAT = "Cat";
+	public final static String BIRD = "Bird";
+	public final static String OTHER = "Other";
 	
 	//Method main
 	public Pet(String theName,String theTypeOfPet, int theAge, double theWeight){
@@ -43,5 +43,64 @@ public class Pet{
 	}
 	public void setWeight(double weight){
 		this.weight=weight;
+	}
+	
+	
+	public double DailyCostForHospitalization(){
+		double DailyCost = 0;
+		if(typeOfPet.equals(Pet.DOG)){
+			if(weight > 1 && weight <=3 ){
+				DailyCost= 15000;
+			}
+			else if(weight > 3 && weight <=10){
+				DailyCost = 17000;
+			}
+			else if(weight > 10 && weight <=20){
+				DailyCost = 20000;
+			}
+			else
+				DailyCost=25000;
+		}
+		else if(typeOfPet.equals(Pet.CAT)){
+			if(weight > 1 && weight <=3 ){
+				DailyCost= 10000;
+			}
+			else if(weight > 3 && weight <=10){
+				DailyCost = 12000;
+			}
+			else if(weight > 10 && weight <=20){
+				DailyCost = 15000;
+			}
+			else
+				DailyCost=20000;
+		}
+		else if(typeOfPet.equals(Pet.BIRD)){
+			if(weight > 1 && weight <=3 ){
+				DailyCost= 10000;
+			}
+			else if(weight > 3 && weight <=10){
+				DailyCost = 12000;
+			}
+			else if(weight > 10 && weight <=20){
+				DailyCost = 20000;
+			}
+			else
+				DailyCost=25000;
+		}
+		else if(typeOfPet.equals(Pet.OTHER)){
+			if(weight > 1 && weight <=3 ){
+				DailyCost= 10000;
+			}
+			else if(weight > 3 && weight <=10){
+				DailyCost = 17000;
+			}
+			else if(weight > 10 && weight <=20){
+				DailyCost = 30000;
+			}
+			else
+				DailyCost=33000;
+		}
+		
+		return DailyCost;
 	}
 }

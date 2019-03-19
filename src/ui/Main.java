@@ -16,10 +16,8 @@ import java.util.Scanner;
 
 public class Main{
 
-	//Relations
-	private ArrayList<clinicHistory> attachmets;
-	private ArrayList<Client> humanClient;
-	private miniRooms[] minis;
+	//relation
+	private Veterinary MyLittlePet;
 
 
 
