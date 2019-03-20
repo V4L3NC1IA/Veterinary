@@ -5,7 +5,7 @@ public class Client{
 	//Attributes
 	private String name;
 	private int id;
-	private int address;
+	private String address;
 	private int telephoneContac;
 	
 	//Relations
@@ -13,7 +13,7 @@ public class Client{
 	
 
 	//method main
-	public Client(String theName,int theId, int theAddress, int ThetelephoneContac, ArrayList<Pet> pets){
+	public Client(String theName,int theId, String theAddress, int ThetelephoneContac, ArrayList<Pet> pets){
 		this.name = name;
 		this.id = id;
 		this.address = address;
@@ -33,10 +33,10 @@ public class Client{
 	public void setId(int id){
 		this.id=id;
 	}
-	public int getAddress(){
+	public String getAddress(){
 		return address;
 	}
-	public void setAddress(int address){
+	public void setAddress(String address){
 		this.address= address;
 	}
 	public int getTelephoneContac(){

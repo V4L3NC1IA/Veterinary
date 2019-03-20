@@ -87,10 +87,51 @@ public class Main{
 				case(7):
 				
 				case(8):
-				Veterinary.clrscr();
 				System.out.println("Gracias por Usar el software");				
 			}
 		}
+	}
+	
+	public void addPetAndClient(){
+		System.out.println("Enter the name of the client (owner of the pets)");
+		String name=reader.nextLine();
+		System.out.println("Enter ID");
+		int id = reader.nextInt();
+		System.out.println("Enter your address");
+		String address=reader.nextLine;
+		System.out.println("Enter your telephone Contac");
+		int telephoneContac= reader.nextInt;
+		
+		System.out.println("Enter the name of the Pet");
+		String name=reader.nextLine();
+		System.out.println("Enter the type of pet \n1.Dog \n2.Cat \n3.Bird \n4.Other");
+		int select= reader.nextLine();
+		String typeOfPet="";
+		if(select==1){
+			typeOfPet= Pet.DOG;
+		}
+		else if(select==2){
+			typeOfPet= Pet.CAT;
+		}
+		else if(select==3){
+			typeOfPet = Pet.BIRD;
+		}
+		else if(select==4){
+			typeOfPet = Pet.OTHER;
+		}
+		else{
+			System.out.printl("Enter the type of pet");
+		}
+		System.out.prinln("Enter the age of the pet");
+		int age= reader.nextLine;
+		System.out.prinln("Enter the weight of the pet");
+		double weight= reader.nextDouble;
+		
+		while(other!=2){
+			
+		}
+		
+	
 	}
 	
 
