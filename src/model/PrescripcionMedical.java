@@ -41,12 +41,24 @@ public class PrescripcionMedical{
 		this.frequencyDose = frequencyDose;
 	}
 	
-	
 	public double CostForMecines(){
 		double CostMedicine= 0;
 		CostMedicine += (dose * costForDose);
 		
 		return CostMedicine;
 	}
+	
+	public String showInfoMedicine(){
+		String showInfoM ="";
+		
+		showInfoM += "The medication is called:" + name +"\n";
+		showInfoM += "The dose of the medication is:" +dose + "\n";
+		showInfoM += "The cost of the dose is:" +costForDose +"\n";
+		showInfoM += "The frequency of the dose is:" +frequencyDose +"\n";
+		showInfoM += "The total cost of medicine is:" +CostForMecines() +"\n";
+		return showInfoM;
+		
+	}
+	
 }
 

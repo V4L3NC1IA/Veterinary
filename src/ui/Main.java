@@ -18,22 +18,80 @@ public class Main{
 
 	//relation
 	private Veterinary MyLittlePet;
+	private Scanner reader;
+	
+	//creation of objects
+	public Main(){
+		reader = new Scanner(System.in);
+	}
 
-
+	public static void main(String[] args){
+		Main m= new Main();
+		m.welcomeMenssage();
+		m.showMenu();
+	}
 
 	public void welcomeMenssage(){    //show welcome menssage   
-		
-		System.out.println("")
-		
-
+	
+		System.out.println(" __        __         _                                       _                 ");
+		System.out.println(" \\ \\      / /   ___  | |   ___    ___    _ __ ___     ___    | |_    ___        ");
+		System.out.println("  \\ \\ /\\ / /   / _ \\ | |  / __|  / _ \\  | '_ ` _ \\   / _ \\   | __|  / _ \\       ");
+		System.out.println("   \\ V  V /   |  __/ | | | (__  | (_) | | | | | | | |  __/   | |_  | (_) |      ");
+		System.out.println("    \\_/\\_/     \\___| |_|  \\___|  \\___/  |_| |_| |_|  \\___|    \\__|  \\___/       ");
+		System.out.println("  __  __             _       _   _     _     _            ____           _      ");
+		System.out.println(" |  \\/  |  _   _    | |     (_) | |_  | |_  | |   ___    |  _ \\    ___  | |_    ");
+		System.out.println(" | |\\/| | | | | |   | |     | | | __| | __| | |  / _ \\   | |_) |  / _ \\ | __|   ");
+		System.out.println(" | |  | | | |_| |   | |___  | | | |_  | |_  | | |  __/   |  __/  |  __/ | |_    ");
+		System.out.println(" |_|  |_|  \\__, |   |_____| |_|  \\__|  \\__| |_|  \\___|   |_|      \\___|  \\__|   ");
+		System.out.println("           |___/                                                             	");
 	}
 	
 	//method to show the program options menu
 	public void showOptions(){
-		System.out.println("")
-		
+		System.out.println(" __^__                                                                       __^__");
+		System.out.println("( ___ )---------------------------------------------------------------------( ___ )");
+		System.out.println(" | / |  1. Register clients and their pets                                   | \\ |");
+		System.out.println(" | / |  2. Hospitalize a pet                                                 | \\ |");
+		System.out.println(" | / |  3. Consult the contact details of the owner of a hospitalized pet    | \\ |");
+		System.out.println(" | / |  4. Discharge an animal that has been hospitalized                    | \\ |");
+		System.out.println(" | / |  5. Mini rooms                                                        | \\ |");
+		System.out.println(" | / |  6.Earnings from hospitalization                                      | \\ |");
+		System.out.println(" | / |  7. Report of the medical records of a pet that has been hospitalized | \\ |");
+		System.out.println(" | / |  8.Exit                                                               | \\ |");
+		System.out.println(" |___|                                                                       |___|");
+		System.out.println("(_____)---------------------------------------------------------------------(_____)");
 	}
-
-
+	
+	public void showMenu(){
+		int userInput =0;
+		
+		while(userInput!=8){
+			showOptions();
+			
+			userInput=reader.nextInt();
+			reader.nextLine();
+			
+			switch(userInput){
+				case(1):
+				
+				case(2):
+				
+				case(3):
+				
+				case(4):
+				
+				case(5):
+				
+				case(6):
+				
+				case(7):
+				
+				case(8):
+				Veterinary.clrscr();
+				System.out.println("Gracias por Usar el software");				
+			}
+		}
+	}
+	
 
 }
