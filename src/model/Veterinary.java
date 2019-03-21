@@ -38,13 +38,6 @@ public class Veterinary{
 		this.humanClient = humanClient;
 	}
 	
-	public static void clrscr(){ //method to clean the screen when leaving
-		try {
-			if (System.getProperty("os.name").contains("Windows"))
-				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-			else
-            Runtime.getRuntime().exec("clear");
-		} catch (IOException | InterruptedException ex) {}
-	}	
+
 
 }

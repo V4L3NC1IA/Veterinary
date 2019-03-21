@@ -13,12 +13,12 @@ public class Client{
 	
 
 	//method main
-	public Client(String theName,int theId, String theAddress, int ThetelephoneContac, ArrayList<Pet> pets){
+	public Client(String theName,int theId, String theAddress, int ThetelephoneContac){
 		this.name = name;
 		this.id = id;
 		this.address = address;
 		this.telephoneContac = telephoneContac;
-		this.pets= pets;
+		pets= new ArrayList<Pet>();
 	}
 	//Setters and Getters
 	public String getName (){
@@ -51,4 +51,10 @@ public class Client{
 	public void setList(ArrayList<Pet> pets){
 		this.pets = pets;
 	}
+	
+	public void addPet(Pet petsito){
+		pets.add(petsito);
+	}
+	
+	//public String addClient(){}
 }

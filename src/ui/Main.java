@@ -23,6 +23,16 @@ public class Main{
 	//creation of objects
 	public Main(){
 		reader = new Scanner(System.in);
+		Dates joinDate= new Dates(03,02,2019);
+		Dates exitDate= new Dates(03,04,2019);
+		Pet pets= new Pet("Sr.Cat",Pet.CAT,5,9.2);
+		Client own= new Client("Adolfo",1006098649,"cra 45 # 45-64",3201254);
+		own.addPet(pets);
+		
+		
+		
+		
+		
 	}
 
 	public static void main(String[] args){
@@ -92,20 +102,25 @@ public class Main{
 		}
 	}
 	
-	public void addPetAndClient(){
+	public void addClient(){
 		System.out.println("Enter the name of the client (owner of the pets)");
 		String name=reader.nextLine();
 		System.out.println("Enter ID");
 		int id = reader.nextInt();
 		System.out.println("Enter your address");
-		String address=reader.nextLine;
+		String address=reader.nextLine();
 		System.out.println("Enter your telephone Contac");
-		int telephoneContac= reader.nextInt;
+		int telephoneContac= reader.nextInt();
+		
+		
+	
+	}
+	public void addPet(){
 		
 		System.out.println("Enter the name of the Pet");
 		String name=reader.nextLine();
 		System.out.println("Enter the type of pet \n1.Dog \n2.Cat \n3.Bird \n4.Other");
-		int select= reader.nextLine();
+		int select= reader.nextInt();
 		String typeOfPet="";
 		if(select==1){
 			typeOfPet= Pet.DOG;
@@ -120,18 +135,13 @@ public class Main{
 			typeOfPet = Pet.OTHER;
 		}
 		else{
-			System.out.printl("Enter the type of pet");
+			System.out.println("Enter the type of pet");
 		}
-		System.out.prinln("Enter the age of the pet");
-		int age= reader.nextLine;
-		System.out.prinln("Enter the weight of the pet");
-		double weight= reader.nextDouble;
+		System.out.println("Enter the age of the pet");
+		int age= reader.nextInt();
+		System.out.println("Enter the weight of the pet");
+		double weight= reader.nextDouble();
 		
-		while(other!=2){
-			
-		}
-		
-	
 	}
 	
 

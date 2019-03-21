@@ -13,17 +13,21 @@ public class clinicHistory{
 	//Relations
 	private ArrayList<PrescripcionMedical>	drugs;
 	private ArrayList<Pet> historyPet;
-	private Dates date;
+	private Dates joinDate;
+	private Dates exitDate;
 
 	//method Main
-	public clinicHistory(ArrayList<Pet> historyPet, boolean status, String diagnostic, String symptoms, double costForDay, Dates date, ArrayList<	PrescripcionMedical> drugs){
+	public clinicHistory(boolean status, String diagnostic, String symptoms, double costForDay, Dates joinDate, Dates exitDate){
 		this.historyPet = historyPet;
 		this.status= status;
 		this.diagnostic = diagnostic;
 		this.symptoms = symptoms;
 		this.costForDay = costForDay;
-		this.date= date;
+		this.joinDate=joinDate;
+		this.exitDate=exitDate;
 		this.drugs= drugs;
+		historyPet= new ArrayList<Pet>();
+		drugs= new ArrayList<PrescripcionMedical>();
 	}
 	//Setters and Getters
 	public boolean getStatus(){
@@ -57,4 +61,10 @@ public class clinicHistory{
 		this.drugs=drugs;
 	}
 	
+	public void addHistoryPet(Pet history){
+		historyPet.add(history);
+	}
+	public void addDrugs(PrescripcionMedical Drugs){
+		drugs.add(Drugs);
+	}
 }
