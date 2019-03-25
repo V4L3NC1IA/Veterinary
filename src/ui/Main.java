@@ -98,8 +98,7 @@ public class Main{
 		System.out.println("Enter the name of the client (owner of the pets)");
 		String name=reader.nextLine();
 		System.out.println("Enter ID");
-		int id = reader.nextInt();
-		reader.nextLine();
+		String id = reader.nextLine();
 		System.out.println("Enter your address");
 		String address=reader.nextLine();
 		System.out.println("Enter your telephone Contac");
@@ -111,8 +110,6 @@ public class Main{
 			System.out.print("How many pets will the customer register?\n"); 
 			int petsitos= reader.nextInt(); 
 			reader.nextLine();
-
-			ArrayList<Pet> petClient = new ArrayList<Pet>();
 
 			for(int i = 0; i < petsitos; ++i){
 				System.out.println("Enter the name of the Pet");
@@ -141,16 +138,16 @@ public class Main{
 				System.out.println("Enter the weight of the pet");
 				double weight= reader.nextDouble();
 				reader.nextLine();
-				Pet newPet= new Pet(namePet,typeOfPet,age,weight);
-				petClient.add(newPet);
-				
+				Pet newPet= new Pet(namePet,typeOfPet,age,weight,newClient);
+				newClient.addPets(newPet);
+				MyLittlePet.addClients(newClient);
 				System.out.println("-------------------------------------------\n");
 				System.out.println("| New client has been successfully added  |\n");
 				System.out.println("--------------------------------------------n");
 			}
 		
 	}
-	
+		
 		public void hospitalizeAPet(){
 
 		if(MyLittlePet.miniRoomsAvailable()){
@@ -191,7 +188,7 @@ public class Main{
 
 				clinicHistory newHospi = new clinicHistory("Open", diagnosys, symptoms, newJoinDate, null);
 
-				System.out.println("▂ ▃ ▅ ▆ █ Medication █ ▆ ▅ ▃ ▂);
+				System.out.println("▂ ▃ ▅ ▆ █ Medication █ ▆ ▅ ▃ ▂");
 			
 				System.out.println("");
 				System.out.print("How many prescribed medicines does the pet have?\n");
@@ -238,17 +235,34 @@ public class Main{
 
 	public void init(){
 		
-		Client own= new Client("Adolfo",1006098649,"cra 45 # 45-64",3201254);
-		Pet pets= new Pet("Sr.Cat",Pet.CAT,5,9.2);
-		ArrayList<Pet> clientPets1 = new ArrayList<Pet>();
-		MyLittlePet.createClients(own,pets);
-
+		Client own= new Client("Adolfo","1006098649","cra 45 # 45-64",3201254);
+		Pet pets= new Pet("Sr.Cat",Pet.CAT,5,9.2, own);
+		own.addPets(pets);
+		pets.setOwner(own);
+		clinicHistory historyC = new clinicHistory(true,"Abdominal pain","Colon cancer",pets, null, null);
+		PrescripcionMedical medicine1= new PrescripcionMedical("Ramipril",2.0,4300,24.0);
+		PrescripcionMedical medicine2= new PrescripcionMedical("Colecalciferon",4,2300,12);
+		historyC.addDrugs(medicine1);
+		historyC.addDrugs(medicine2);
+		Dates dateJoin= new Dates(3, 2, 19);
+		Dates dateExit= new Dates(3, 4, 19);
 		
-		Dates joinDate= new Dates(03,02,2019);
-		Dates exitDate= new Dates(03,04,2019);
 		
 		
-		
+		miniRooms room1 = new miniRooms(true, 1, null);
+		miniRooms room2 = new miniRooms(true, 2, null);
+		miniRooms room3 = new miniRooms(true, 3, null);
+		miniRooms room4 = new miniRooms(true, 4, historyC);
+		miniRooms room5 = new miniRooms(true, 5, null);
+		miniRooms room6 = new miniRooms(true, 6, null);
+		miniRooms room7 = new miniRooms(false, 7, null);
+		miniRooms room8 = new miniRooms(true, 8, null);
+		miniRooms[] roomsT = {room1,room2, room3, room4, room5, room6, room7, room8};
+		MyLittlePet = new Veterinary();
+		MyLittlePet.setMinis(roomsT);
+		MyLittlePet.addHistorys(historyC);
+		MyLittlePet.addClients(own);
 		
 	}
+	
 }
