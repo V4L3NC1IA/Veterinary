@@ -10,13 +10,16 @@ public class Pet{
 	public final static String CAT = "Cat";
 	public final static String BIRD = "Bird";
 	public final static String OTHER = "Other";
+	// 
+	public Client own;
 	
 	//Method main
-	public Pet(String theName,String theTypeOfPet, int theAge, double theWeight){
+	public Pet(String theName,String theTypeOfPet, int theAge, double theWeight, Client own){
 		name= theName;
 		typeOfPet= theTypeOfPet;
 		age= theAge;
 		weight= theWeight;
+		this.own=own;
 	}
 	
 	//Setters and Getters
@@ -44,7 +47,24 @@ public class Pet{
 	public void setWeight(double weight){
 		this.weight=weight;
 	}
+	public Client getOwn(){
+		return own;
+	}
+	public void setOwner(Client own){
+		this.own = own;
+	}
 	
+	public String nameOwner(){
+		return own.getName();
+	}
+
+	public String idOwner(){
+		return own.getId();
+	}
+	
+	public String infoOwner(){
+		return own.owneInfo();
+	}
 	
 	public double DailyCostForHospitalization(){
 		double DailyCost = 0;
@@ -102,5 +122,34 @@ public class Pet{
 		}
 		
 		return DailyCost;
+	}
+	public String showInfoPets(){
+		String message ="";
+		message +="My name is:" + name;
+		message +="\nMy age is:" + age;
+		message +="\nMy weight is:" + weight;
+		
+		if(typeOfPet.equals(Pet.DOG)){
+			message+="\nI'm a " +typeOfPet;
+		}
+		else if(typeOfPet.equals(Pet.CAT)){
+			message+="\nI'm a " +typeOfPet;
+		}
+		else if(typeOfPet.equals(Pet.BIRD)){
+			message+="\nI'm a " +typeOfPet;
+		}
+		else if(typeOfPet.equals(Pet.OTHER)){
+			message+="\nI'm a "+ typeOfPet;
+		}
+		
+		return message;
+	}
+	
+	public String identifierOwner(){
+		return own.getId();
+	}
+
+	public String contactOwner(){
+		return own.owneInfo();
 	}
 }

@@ -2,30 +2,89 @@ package model;
 public class miniRooms{
 
 	//attributes
-	private boolean available;
-	private String name;
 	
 	//relations
-	private clinicHistory historial;
+		private clinicHistory historial;
+		
+		private boolean available;
+		private int numberOfMiniRoom;
+		private String pet;
+		private String owner;
+
+
 	
-	//method Main
-	public miniRooms(boolean available, String name){
+
+//METHODS
+	public miniRooms(boolean available, int numberOfMiniRoom, clinicHistory historial){
 		this.available = available;
-		this.name = name;
+		this.numberOfMiniRoom = numberOfMiniRoom;
+		this.historial=historial;
+
 	}
-	
-	//Setters and getters
-	public boolean getAvailable(){
+
+
+	public  boolean getAvailable() {
 		return available;
 	}
-	public void setAvailable(){
+
+
+	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-	public String getName(){
-		return name;	
+
+
+	public  int getNumberOfMiniRoom() {
+		return numberOfMiniRoom;
 	}
-	public void setName(){
-		this.name=name;
+
+
+	public void setNumberOfMiniRoom(int numberOfMiniRoom) {
+		this.numberOfMiniRoom = numberOfMiniRoom;
+	}
+
+
+	public clinicHistory getHistory(){
+		return historial;
+	}
+	
+	public void setHistory(clinicHistory historial){
+		this.historial=historial;
+	}
+
+	public String reportRooms(){
+		String msg = "";
+		msg += "\nThe room "+getNumberOfMiniRoom()+":";
+		msg += historial.report();
+		return msg;
+	}
+	
+	 
+	public String contactOwn(){
+		return historial.contactOwner();
+	}
+	
+	
+	public void exitDate(Dates exit){
+		historial.setExitDate(exit);
+	}
+	
+	
+	public void statusHistory(boolean status){
+		getHistory().setStatus(status);
+	}
+	
+	
+	public double costHospitalizacion(){
+		return historial.hospitalizationCost();
+	}
+	
+	
+	public boolean samePet(String identifier, String name){
+		boolean same = false;
+		if(identifier.equals(historial.identifierOwner()) && name.equals(historial.nameP())){
+			same = true;
+		}
+		return same;
 	}
 
 }
