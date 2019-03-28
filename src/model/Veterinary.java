@@ -181,6 +181,27 @@ public class Veterinary{
 		return msg;
 	}
 	
+	public String eliminatePet(String id, String theName){
+		String msg = "";
+		for(int i = 0; i < humanClient.size(); i++){
+			if(humanClient.get(i).getId().equals(id)){
+				msg = humanClient.get(i).eliminatePet(theName);
+			}
+		}
+		return msg;
+	}
+	
+	
+	public String eliminateClient(String id){
+		String msg = "";
+		for(int i = 0; i < humanClient.size(); i++){
+			if(humanClient.get(i).getId().equals(id)){
+				humanClient.remove(i);
+				msg = "The client was eliminate successfuly";
+			}
+		}
+		return msg;
+	}
 	
 	public double MyLittlePetEarnings(){
 		double earns = 0.0;
@@ -203,6 +224,19 @@ public class Veterinary{
 		return number;
 	}
 	
+		public Client returnClient(String id){
+		Client client1 = null;
+		boolean clientFinded = false;
+		if(findClient(id) == true){
+			for(int i = 0; !clientFinded && i < humanClient.size(); i++){
+				if(id.equals(humanClient.get(i).getId())){
+					client1 = humanClient.get(i);
+					clientFinded = true;
+				}
+			}
+		}
+		return client1;
+	}
 
 	
 	

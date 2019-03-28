@@ -13,7 +13,7 @@ public class Client{
 	
 
 	//method main
-	public Client(String theName,String theId, String theAddress, int ThetelephoneContac){
+	public Client(String name,String id, String address, int telephoneContac){
 		this.name = name;
 		this.id = id;
 		this.address = address;
@@ -55,6 +55,21 @@ public class Client{
 	  pets.add(petsito);
 	}
 	
+	public String namePetsito(){
+		String msg = "";
+		int position = 0;
+		if(pets.isEmpty()){
+			msg = "\nThe client don't has pet";
+		}
+		else{
+		for(int i = 0; i < pets.size(); i++){
+			position++;
+			msg += "\n"+position+". "+pets.get(i).getName();
+		}
+		}
+		return msg;
+	}
+	
 	public String owneInfo(){
 		String msj="";
 	
@@ -94,7 +109,19 @@ public class Client{
 		return menssage;
 	}
 	
-	
+	public String eliminatePet(String petName){
+		String msg = "";
+		for(int i = 0; i < pets.size(); i++){
+			if(pets.get(i).getName().equals(petName)){
+				pets.remove(i);
+				msg = "The pet was eliminate successfuly";
+			}
+			else{
+				msg = "The pet doesn't exist";
+			}
+		}
+		return msg;
+	}
 	
 	/*
 	public void startHospitalizePers(String namePet, clinicHistory historyClinic, ArrayList<PrescripcionMedical> medicinePet){

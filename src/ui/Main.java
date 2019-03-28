@@ -55,10 +55,12 @@ public class Main{
 		System.out.println(" | / |  2. Hospitalize a pet                                                 | \\ |");
 		System.out.println(" | / |  3. Consult the contact details of the owner of a hospitalized pet    | \\ |");
 		System.out.println(" | / |  4. Discharge an animal that has been hospitalized                    | \\ |");
-		System.out.println(" | / |  5. Mini rooms                                                        | \\ |");
+		System.out.println(" | / |  5. Mini rooms of pets                                                | \\ |");
 		System.out.println(" | / |  6.Earnings from hospitalization                                      | \\ |");
 		System.out.println(" | / |  7. Report of the medical records of a pet that has been hospitalized | \\ |");
-		System.out.println(" | / |  8.Exit                                                               | \\ |");
+		System.out.println(" | / |  8. Remove client                                                     | \\ |");
+		System.out.println(" | / |  9. Remove Pet                                                        | \\ |");
+		System.out.println(" | / |  10.Exit                                                              | \\ |");
 		System.out.println(" |___|                                                                       |___|");
 		System.out.println("(_____)---------------------------------------------------------------------(_____)");
 	}
@@ -96,20 +98,20 @@ public class Main{
 				System.out.println(MyLittlePet.report());
 				break;
 				case(8):
-				System.out.println("Gracias por Usar el software");		
+				removeClient();	
 				break;
 				case(9):
-				
+				removePet();
+				break;
+				case(10):
+				System.out.println("Gracias por Usar el software");
 				break;
 			}
 		}
 	}
 	
-	public String EarningForHos(){
-		String msj="";
-		msj+= System.out.println("The earnings from the hospitalization "+MyLittlePet.MyLittlePetEarnings());
-		return msj;
-		
+	public void EarningForHos(){
+		System.out.println("The earnings from the hospitalization "+MyLittlePet.MyLittlePetEarnings());
 	}
 	public void addClientAndPet(){
 		System.out.println("Enter the name of the client (owner of the pets)");
@@ -292,8 +294,35 @@ public class Main{
 		}
 		}
 	}
-	public void eliminatePet(){
-		
+	
+	public void removePet(){
+		System.out.println("What is the ID of the owner");
+		String ID = reader.nextLine();
+		if(!MyLittlePet.findClient(ID)){
+			System.out.println("The client doesn't exist");
+		}
+		else{
+			System.out.println("What pet do you want to hospitalize");
+			System.out.println(MyLittlePet.returnClient(ID).namePetsito());
+			if(!(MyLittlePet.returnClient(ID).namePetsito().equals("\nThe client don't has pets"))){
+			int option = reader.nextInt();
+			reader.nextLine();
+			String theName = MyLittlePet.returnClient(ID).getPets().get(option-1).getName();
+			System.out.println(MyLittlePet.eliminatePet(ID, theName));
+			}
+		}
+	}
+	
+	
+	public void removeClient(){
+		System.out.println("What is the ID of the client");
+		String ID = reader.nextLine();
+		if(!MyLittlePet.findClient(ID)){
+			System.out.println("The client doesn't exist");
+		}
+		else{
+			System.out.println(MyLittlePet.eliminateClient(ID));
+		}
 	}
 	public void init(){
 		MyLittlePet = new Veterinary();
