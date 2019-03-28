@@ -37,7 +37,7 @@ public class Veterinary{
 	public void setHumanClient(ArrayList<Client> humanClient){
 		this.humanClient = humanClient;
 	}
-	public void addClients(Client client1){
+	public void addClient(Client client1){
 		humanClient.add(client1);
 	}
 
@@ -48,7 +48,7 @@ public class Veterinary{
 
 	public boolean findClient(String Id){
 		boolean clientx = false;
-		for(int i = 0; !clientx && i < humanClient.size(); i++){
+		for(int i = 0;i < humanClient.size() && !clientx; i++){
 			if(Id.equals(humanClient.get(i).getId())){
 				clientx = true;
 				}
@@ -182,25 +182,20 @@ public class Veterinary{
 	}
 	
 	
-	public double hospitalizationEarnings(){
+	public double MyLittlePetEarnings(){
 		double earns = 0.0;
 		for(int i = 0; i < attachmets.size(); i++){
 			earns += attachmets.get(i).hospitalizationCost();
-		}
-		for(int i = 0; i < minis.length; i++){
-			if(minis[i].getAvailable() == false){
-				earns += minis[i].costHospitalizacion();
-			}
 		}
 		return earns;
 	}
 	
 
-	public int numberRoom(String identifier, String name){
+	public int numberRoom(String id, String namep){
 		int number = 0;
 		boolean finded = false;
 		for(int i = 0; !finded && i < minis.length; i++){
-			if(minis[i].getHistory() != null && minis[i].samePet(identifier, name) == true){
+			if(minis[i].getHistory() != null && minis[i].samePet(id, namep) == true){
 				number = minis[i].getNumberOfMiniRoom();
 				finded = true;
 			}
@@ -209,26 +204,7 @@ public class Veterinary{
 	}
 	
 
-	public String eliminatePet(String identifier, String name){
-		String msg = "";
-		for(int i = 0; i < humanClient.size(); i++){
-			if(humanClient.get(i).getId().equals(identifier)){
-				msg = humanClient.get(i).eliminatePetVeterinary(name);
-			}
-		}
-		return msg;
-	}
 	
-	public String eliminateClient(String identifier){
-		String msg = "";
-		for(int i = 0; i < humanClient.size(); i++){
-			if(humanClient.get(i).getId().equals(identifier)){
-				humanClient.remove(i);
-				msg = "The client was eliminate successfuly";
-			}
-		}
-		return msg;
-	}
 	
 	
 	public String historyPet(String name, String identifier){

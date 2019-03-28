@@ -51,8 +51,8 @@ public class Client{
 	public void setList(ArrayList<Pet> pets){
 		this.pets = pets;
 	}
-	public void addPets(Pet petOn){
-	  pets.add(petOn);
+	public void addPets(Pet petsito){
+	  pets.add(petsito);
 	}
 	
 	public String owneInfo(){
@@ -114,19 +114,7 @@ public class Client{
 		}
 	}	
 	/*/
-	public String eliminatePetVeterinary(String namePet){
-		String menssage = "";
-		for(int i = 0; i < pets.size(); i++){
-			if(pets.get(i).getName().equals(namePet)){
-				pets.remove(i);
-				menssage = "The pet eliminate";
-			}
-			else{
-				menssage = "The pet doesnt exist";
-			}
-		}
-		return menssage;
-	}
+	
 	
 	
 	

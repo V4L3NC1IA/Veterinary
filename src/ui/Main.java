@@ -23,7 +23,7 @@ public class Main{
 	//creation of objects
 	public Main(){
 		reader = new Scanner(System.in);
-		
+		init();
 	}
 
 	public static void main(String[] args){
@@ -76,24 +76,41 @@ public class Main{
 			switch(userInput){
 				case(1):
 				addClientAndPet();
+				break;
 				case(2):
-				
+				hospitalizePet();
+				break;
 				case(3):
-				
+				ownContac();
+				break;
 				case(4):
-				
+				dischargePet();
+				break;
 				case(5):
-				
+				miniRoomPet();
+				break;
 				case(6):
-				
+				EarningForHos();
+				break;
 				case(7):
-				
+				System.out.println(MyLittlePet.report());
+				break;
 				case(8):
-				System.out.println("Gracias por Usar el software");				
+				System.out.println("Gracias por Usar el software");		
+				break;
+				case(9):
+				
+				break;
 			}
 		}
 	}
 	
+	public String EarningForHos(){
+		String msj="";
+		msj+= System.out.println("The earnings from the hospitalization "+MyLittlePet.MyLittlePetEarnings());
+		return msj;
+		
+	}
 	public void addClientAndPet(){
 		System.out.println("Enter the name of the client (owner of the pets)");
 		String name=reader.nextLine();
@@ -106,6 +123,7 @@ public class Main{
 		reader.nextLine();
 
 			Client newClient = new Client(name, id, address, telephoneContac);
+			
 
 			System.out.print("How many pets will the customer register?\n"); 
 			int petsitos= reader.nextInt(); 
@@ -136,132 +154,176 @@ public class Main{
 				int age= reader.nextInt();
 				reader.nextLine();
 				System.out.println("Enter the weight of the pet");
-				double weight= reader.nextDouble();
+				double weighp= reader.nextDouble();
 				reader.nextLine();
-				Pet newPet= new Pet(namePet,typeOfPet,age,weight,newClient);
+				Pet newPet= new Pet(namePet,typeOfPet,age,weighp,newClient);
 				newClient.addPets(newPet);
-				MyLittlePet.addClients(newClient);
+				MyLittlePet.addClient(newClient);
 				System.out.println("-------------------------------------------\n");
 				System.out.println("| New client has been successfully added  |\n");
 				System.out.println("--------------------------------------------n");
+				
 			}
 		
 	}
+	public void miniRoomPet(){
+		System.out.println("What is the identifier of the owner");
+		String Id = reader.nextLine();
+		System.out.println("what is the name of the pet");
+		String namePet = reader.nextLine();
 		
-		public void hospitalizeAPet(){
-
-		if(MyLittlePet.miniRoomsAvailable()){
-
-			System.out.println("");
-			System.out.print("The name of the pet that must be hospitalized: "); 
-			String petsName = reader.nextLine();
-			System.out.print("The name of the pet owner: "); 
-			String name = reader.nextLine();
-			System.out.print("The owner's identification: ");
-			int id = reader.nextInt();
-			String name = reader.nextLine();
-			System.out.println("");
-
-			if(MyLittlePet.checkOwner(name, id, petsName)){
-
-
-				
-				System.out.println(" ▂ ▃ ▅ ▆ █ Hospitalization day information █ ▆ ▅ ▃ ▂");
-
-				System.out.println("");
-				System.out.print("Day of the hospitalization of the pet: "); 
-				int day = reader.nextInt(); 
+		if(MyLittlePet.numberRoom(Id, namePet) !=0){
+			System.out.println("The pet is in the room "+MyLittlePet.numberRoom(Id, namePet));
+		}
+		else{
+			System.out.println("The pet is not in a room");
+		}
+	}
+	public void hospitalizePet(){
+		if(MyLittlePet.availableRoom() == true){
+			int stop = 0;
+			while (stop == 0){
+			System.out.println("owner's identifier:");
+			String Id = reader.nextLine();
+			if(MyLittlePet.findClient(Id) == true){
+				System.out.println("What pet do you want to hospitalize");
+				System.out.println(MyLittlePet.clint(Id).petName());
+				int option = reader.nextInt();
 				reader.nextLine();
-				System.out.print("Month of the hospitalization of the pet: "); 
-				int month = reader.nextInt(); 
+				System.out.println("¿What are the symptoms?");
+				String sysmptoms = reader.nextLine();
+				System.out.println("¿What is the diagnostic?");
+				String diagnostic = reader.nextLine();
+				Pet petsHos = MyLittlePet.clint(Id).getPets().get(option-1);
+				System.out.println("Day of join:");
+				int tDay = reader.nextInt();
 				reader.nextLine();
-				System.out.print("Year of the hospitalization of the pet: "); 
-				int year = reader.nextInt(); 
+				System.out.println("Month of join:");
+				int tMonth = reader.nextInt();
 				reader.nextLine();
-				Dates newJoinDate = new Dates(day, month, year);
-				
-				System.out.print("Type the pet's symptoms "); 
-				String symptoms = reader.nextLine();
-				System.out.print("Type the pet's diagnosys: "); 
-				String diagnosys = reader.nextLine();
-				
-
-				clinicHistory newHospi = new clinicHistory("Open", diagnosys, symptoms, newJoinDate, null);
-
-				System.out.println("▂ ▃ ▅ ▆ █ Medication █ ▆ ▅ ▃ ▂");
-			
-				System.out.println("");
-				System.out.print("How many prescribed medicines does the pet have?\n");
-				int quantity = reader.nextInt(); 
+				System.out.println("Year of join:");
+				int tYear = reader.nextInt();
 				reader.nextLine();
-
-				ArrayList<PrescripcionMedical> petsMedicine = new ArrayList<PrescripcionMedical>();
-				for(int i = 0; i < quantity; ++i){
-
-					System.out.println("___________________________________________________________________");
-					System.out.print("Type the medicine's name: "); 
-					String nameMedicine = reader.nextLine();
-					System.out.print("Type the medicine's dose: ");
-					double doseMedicine = reader.nextDouble(); 
+				Dates today = new Dates(tDay, tMonth, tYear);
+				clinicHistory newClinic = new clinicHistory(true, sysmptoms, diagnostic, petsHos, today, null);
+				System.out.println("How many medicines has the pet?");
+				int quantityMedicines = reader.nextInt();
+				reader.nextLine();
+				for(int i = 0; i < quantityMedicines; i++){
+					System.out.println("--------------------------------");
+					System.out.println("The name of the medicine?");
+					String theName = reader.nextLine();
+					System.out.println("How many doses of the medicine?");
+					double theDoses = reader.nextDouble();
 					reader.nextLine();
-					System.out.print("Type the medicine's price per dose: ");
-					double costMedicine = reader.nextDouble();
+					System.out.println("What is the cost by dose?");
+					double costByDose = reader.nextDouble();
 					reader.nextLine();
-					System.out.print("Type the medicine's frecuency: ");
-					String frecuencyMedicine = reader.nextLine();
-					PrescripcionMedical newMedPet = new PrescripcionMedical(nameMedicine, doseMedicine, costMedicine, frecuencyMedicine);
-					petsMedicine.add(newMedPet);
-					
+					System.out.println("What is the frequency to take the medicine?");
+					double theFrequency = reader.nextDouble();
+					reader.nextLine();
+					PrescripcionMedical temporalDrug = new PrescripcionMedical(theName, theDoses, costByDose,theFrequency);
+					newClinic.addDrugs(temporalDrug);
 				}
-
-				MyLittlePet.initHospitalize(name, id, petsName, historyMedical, medPets);
-				System.out.println("");
-				System.out.println(petsName+" was successfully hospitalized");
-				System.out.println("");
-				
-
-			
-
-			} 	else {System.out.println("");
-				System.out.println("ERROR: No match found.");
-				System.out.println("");}
-
-
-		}	else {System.out.println("");
-				System.out.println("ERROR: All rooms are occupied.");
-				System.out.println("");}
-
+				MyLittlePet.hospitalizeAPet(newClinic);
+				System.out.println("The pet was hospitalized successfully");
+				stop = 1;
+			}
+			else{
+				System.out.println("The client wasn't finded");
+			}
+			}
+			}
+		else{
+			System.out.println("All rooms are occupied");
+		}
 	}
 
-	public void init(){
+	public void ownContac(){
+		int pl = 0;
+		while (pl == 0){
+			System.out.println("in what room is the pet");
+			System.out.println(MyLittlePet.occupiedRooms());
+			int num = reader.nextInt();
+			reader.nextLine();
+			if(MyLittlePet.getMinis().length < num || MyLittlePet.roomOccupied(num-1) == false){
+				System.out.println("not available");
+			}
+			else{
+				System.out.println(MyLittlePet.contactOwner(num));
+				pl = 1;
+			}
+		}
+	}
+	public void dischargePet(){
+		if(MyLittlePet.numberRoomsAvailable() == 8){
+			System.out.println("There is not pets hospitalized");
+		}
+		else{
+		int error = 0;
+		while (error == 0){
+			System.out.println("in what room is the pet?");
+			System.out.println(MyLittlePet.occupiedRooms());
+			int option = reader.nextInt();
+			reader.nextLine();
+			if(MyLittlePet.roomOccupied(option-1) == false){
+				System.out.println("There is no pet in this room");
+			}
+			else{
+				System.out.println("Day of exit:");
+				int todayDay = reader.nextInt();
+				reader.nextLine();
+				System.out.println("Month of exit:");
+				int todayMonth = reader.nextInt();
+				reader.nextLine();
+				System.out.println("Year of exit:");
+				int todayYear = reader.nextInt();
+				reader.nextLine();
+				Dates today = new Dates(todayDay, todayMonth, todayYear);
+				MyLittlePet.exitDate(option, today);
+				System.out.println(MyLittlePet.roomReport(option));
+				MyLittlePet.statusHistory(option, false);
+				MyLittlePet.addHistorys(MyLittlePet.getMinis()[option-1].getHistory());
+				MyLittlePet.availabilityRoom(option, true);
+				MyLittlePet.getMinis()[option-1].setHistory(null);
+				System.out.println("The pet was discharge successfully");
+				error = 1;
+			}
+		}
+		}
+	}
+	public void eliminatePet(){
 		
-		Client own= new Client("Adolfo","1006098649","cra 45 # 45-64",3201254);
-		Pet pets= new Pet("Sr.Cat",Pet.CAT,5,9.2, own);
-		own.addPets(pets);
-		pets.setOwner(own);
-		clinicHistory historyC = new clinicHistory(true,"Abdominal pain","Colon cancer",pets, null, null);
+	}
+	public void init(){
+		MyLittlePet = new Veterinary();
+		Client own1= new Client("Adolfo","100","cra 45 # 45-64",3201254);
+		Pet pets= new Pet("srcat",Pet.CAT,5,9.2, own1);
+		MyLittlePet.addClient(own1);
+		own1.addPets(pets);
+		pets.setOwner(own1);
+		Dates dateJoin= new Dates(3, 2, 19);
+		Dates dateExit= new Dates(3, 4, 19);
+		clinicHistory historyC = new clinicHistory(true,"Abdominal pain","Colon cancer",pets, dateJoin, dateExit);
+		MyLittlePet.addHistorys(historyC);
 		PrescripcionMedical medicine1= new PrescripcionMedical("Ramipril",2.0,4300,24.0);
 		PrescripcionMedical medicine2= new PrescripcionMedical("Colecalciferon",4,2300,12);
 		historyC.addDrugs(medicine1);
 		historyC.addDrugs(medicine2);
-		Dates dateJoin= new Dates(3, 2, 19);
-		Dates dateExit= new Dates(3, 4, 19);
-		
 		
 		
 		miniRooms room1 = new miniRooms(true, 1, null);
 		miniRooms room2 = new miniRooms(true, 2, null);
 		miniRooms room3 = new miniRooms(true, 3, null);
-		miniRooms room4 = new miniRooms(true, 4, historyC);
+		miniRooms room4 = new miniRooms(false, 4, historyC);
 		miniRooms room5 = new miniRooms(true, 5, null);
 		miniRooms room6 = new miniRooms(true, 6, null);
-		miniRooms room7 = new miniRooms(false, 7, null);
+		miniRooms room7 = new miniRooms(true, 7, null);
 		miniRooms room8 = new miniRooms(true, 8, null);
 		miniRooms[] roomsT = {room1,room2, room3, room4, room5, room6, room7, room8};
-		MyLittlePet = new Veterinary();
+
 		MyLittlePet.setMinis(roomsT);
-		MyLittlePet.addHistorys(historyC);
-		MyLittlePet.addClients(own);
+		
 		
 	}
 	

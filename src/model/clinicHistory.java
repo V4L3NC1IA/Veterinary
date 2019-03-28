@@ -146,7 +146,7 @@ public class clinicHistory {
 	}
 
 	public String contactOwner(){
-		return pets.contactOwner();
+		return pets.infoOwner();
 	}
 	
 	

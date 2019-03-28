@@ -149,7 +149,5 @@ public class Pet{
 		return own.getId();
 	}
 
-	public String contactOwner(){
-		return own.owneInfo();
-	}
+	
 }

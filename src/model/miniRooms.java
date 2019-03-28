@@ -57,7 +57,7 @@ public class miniRooms{
 		msg += historial.report();
 		return msg;
 	}
-	
+
 	 
 	public String contactOwn(){
 		return historial.contactOwner();
@@ -79,9 +79,9 @@ public class miniRooms{
 	}
 	
 	
-	public boolean samePet(String identifier, String name){
+	public boolean samePet(String id, String namep){
 		boolean same = false;
-		if(identifier.equals(historial.identifierOwner()) && name.equals(historial.nameP())){
+		if(id.equals(historial.identifierOwner()) && namep.equals(historial.nameP())){
 			same = true;
 		}
 		return same;
