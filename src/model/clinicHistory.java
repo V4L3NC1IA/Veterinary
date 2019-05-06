@@ -14,7 +14,16 @@ public class clinicHistory {
 	private Dates joinDate;
 	private Dates exitDate;
 
-	//Main
+	/**
+	* Constructor method for class clinicHistory which is a medical record for the veterinary
+	* @param status It is the state of the pet whether or not it is hospitalized
+	* @param symptoms The symptoms of the pet for the medical record
+	* @param pets is the pet which is in the clinical history
+	* @param diagnostic The diagnosys of the pet for the medical record. 
+	* @param joinDate The date when the hospitalization started. This param must not be null
+	* @param exitDate The pet in matter for the medical record. This param must not be null
+	*/
+	
 	public clinicHistory(boolean status, String symptoms, String diagnostic, Pet pets, Dates joinDate, Dates exitDate){
 		this.status = status;
 		this.symptoms = symptoms;
@@ -25,66 +34,117 @@ public class clinicHistory {
 		this.exitDate = exitDate;
 	}
 
-	//getters and setters
+	/**
+	*Allows to get the status (open or closed) of a medical record
+	*@return The status of a medical record
+	*/
 	public boolean getStatus(){
 		return status;
 	}
+	/**
+	*Allows to change the status of a hospitalization
+	*post: The status of a hospitalization is changed 
+	*@param status The status (open/closed) of a hospitalization
+	*/
 	public void setStatus(boolean status){
 		this.status = status;
 	}
-
+	
+	/**
+	*Allows to get the symptoms of a medical record
+	*@return The symptoms of a medical record
+	*/
 	public String getSymptoms(){
 		return symptoms;
 	}
+	/**
+	*Allows to change the symptoms of a hospitalization
+	*post:The symptoms of a hospitalization is changed 
+	*@param symptoms The symptoms of a hospitalization
+	*/
+	
 	public void setSymptoms(String symptoms){
 		this.symptoms = symptoms;
 	}
-
+	/**
+	*Allows to get the diagnostic of a medical record
+	*@return The diagnostic of a medical record
+	*/
 	public String getDiagnostic(){
 		return diagnostic;
 	}
+	
+	/**
+	*Allows to change the diagnostic of a hospitalization
+	*post: The diagnostic of a hospitalization is changed
+	*@param diagnostic The diagnostic of a hospitalization
+	*/
+
 	public void setDiagnostic(String diagnostic){
 		this.diagnostic = diagnostic;
 	}
-
+	
+	
 	public Pet getPets(){
 		return pets;
 	}
-	public void setData(Pet pets){
-		this.pets = pets;
-	}
-
+	
+	//public void setData(Pet pets){
+	//	this.pets = pets;
+	//}
+	
+	/**
+	*This method gives the pet's medicines
+	@return drugs- return in a pet's medicine
+	*/
 	public ArrayList<PrescripcionMedical> getDrugs(){
 		return drugs;
 	}
 	public void setDrug(ArrayList<PrescripcionMedical> drugs){
 		this.drugs = drugs;
 	}
-
+	
+	/**
+	* Allows to get the date when the veterinary created the medical record
+	* @return The date when the veterinary created the medical record
+	*/
 	public Dates getJoinDate(){
 		return joinDate;
 	}
-	
+	/**
+	*Allows to change the date when the hospitalization started
+	*post: The date when the hospitalization started is changed
+	*@param joinDate The date when the hospitalization started
+	*/
 	public void setJoinDate(Dates joinDate){
 		this.joinDate = joinDate;
-	}
-
+	}	
+	/**
+	*Allows to get the date when the veterinary discharged the medical record
+	*@return The date when the veterinary discharged the medical record
+	*/
 	public Dates getExitDate(){
 		return exitDate;
 	}
+	/**
+	*Allows to change the date  when the hospitalization ended
+	*post: The date  when the hospitalization ended is changed 
+	*@param exitDate The date  when the hospitalization ended
+	*/
 	public void setExitDate(Dates exitDate){
 		this.exitDate = exitDate;
 	}
-
+	
+	
 	public void addDrugs(PrescripcionMedical drugOn){
 		drugs.add(drugOn);
 	}
 	
-	/*public void addHistoryPet(Pet history){
-		clinicHistory.add(history);
-	}
-	/*/
 	
+	/**
+	*This method calculates the days of hospitalization that a pet takes
+	@return int day - returns an entire with the days the pet has been hospitalized
+	*/
 	public int daysforHospitalized(){
 		int days = 0;
 		if(exitDate == null){
@@ -115,6 +175,11 @@ public class clinicHistory {
 		}
 		return days;
 	}
+	
+	/**
+	*This method calculates the cost of hospitalization of a pet
+	@return double CostTo- returns in a decimal the cost of hostimization of a pet
+	*/
 	public double hospitalizationCost(){
 		double costTo = 0.0;
 		costTo+=pets.DailyCostForHospitalization();
@@ -123,7 +188,10 @@ public class clinicHistory {
 		}
 		return costTo;
 	}
-	
+	/**
+	*This method generates a report of the name of the owner of the pet, the name of the pet, the type of animal, the symptoms, the diagnosis, the name of the prescription drugs
+	@return String msg- returns in a message with the report of the data of the hopitalization of the pet
+	*/
 	public String report(){
 		String msg = "";
 		msg += "The owner is "+pets.nameOwner()+"\n";
@@ -145,24 +213,34 @@ public class clinicHistory {
 		return msg;
 	}
 
+	/**
+	*This method the information of a client
+	*@return String infoOwner- return in a client's information
+	*/
 	public String contactOwner(){
 		return pets.infoOwner();
 	}
-	
-	
-	
+	/**
+	*This method gives the identification of a client
+	*@return String identifierOwner- returns in the identification of a client
+	*/
 	public String identifierOwner(){
 		return pets.idOwner();
 	}
-	
-	
+	/**
+	*This method gives the name of a pet
+	*@return Strign nameP- return in the name of a pet
+	*/
 	public String nameP(){
 		return pets.getName();
 	}
 	
-
+	/** 
+	*This method gives the identification of a client
+	*@return String ownerIdentifier- return in the identification of a client
+	*/
 	public String ownerIdentifier(){
 		return pets.identifierOwner();
 	}
 	
-}
+}	

@@ -11,8 +11,7 @@
 
 package ui;
 import model.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main{
 
@@ -60,7 +59,10 @@ public class Main{
 		System.out.println(" | / |  7. Report of the medical records of a pet that has been hospitalized | \\ |");
 		System.out.println(" | / |  8. Remove client                                                     | \\ |");
 		System.out.println(" | / |  9. Remove Pet                                                        | \\ |");
-		System.out.println(" | / |  10.Exit                                                              | \\ |");
+		System.out.println(" | / |  10.Register a service                                                | \\ |");
+		System.out.println(" | / |  11.Total Earnings                                                    | \\ |");
+		System.out.println(" | / |  11.Income per week                                                   | \\ |");
+		System.out.println(" | / |  12.Exit                                                              | \\ |");
 		System.out.println(" |___|                                                                       |___|");
 		System.out.println("(_____)---------------------------------------------------------------------(_____)");
 	}
@@ -69,7 +71,7 @@ public class Main{
 		int userInput =0;
 		  
 		
-			while(userInput!=8){
+			while(userInput!=12){
 			showOptions();
 			
 			userInput=reader.nextInt();
@@ -104,6 +106,15 @@ public class Main{
 				removePet();
 				break;
 				case(10):
+				registerService();
+				break;
+				case(11):
+				Earnings();
+				break;
+				case(12):
+				showAverageIncomeByWeek();
+				break;
+				case(13):
 				System.out.println("Gracias por Usar el software");
 				break;
 			}
@@ -113,6 +124,36 @@ public class Main{
 	public void EarningForHos(){
 		System.out.println("The earnings from the hospitalization "+MyLittlePet.MyLittlePetEarnings());
 	}
+	
+	public void showAverageIncomeByWeek(){
+		System.out.println("");
+		System.out.print("Please type the day: "); 
+		int day = reader.nextInt(); 
+		reader.nextLine();
+		System.out.print("Please type the month: "); 
+		int month = reader.nextInt();
+		reader.nextLine();
+		System.out.print("Please type the year: "); 
+		int year = reader.nextInt();
+		reader.nextLine();
+
+		Calendar today = new GregorianCalendar();
+		int TodayYear = today.get(Calendar.YEAR);
+
+		if (year <= TodayYear) {
+
+			Dates weekDay = new Dates (day, month, year);
+
+			System.out.println("");
+			System.out.println("Weekly average income: "+ MyLittlePet.weeklyAverageIncome(weekDay));
+			System.out.println("");
+
+		} else {System.out.println("");
+				System.out.println("ERROR: Invalid date.");
+				System.out.println("");}
+
+	}
+	
 	public void addClientAndPet(){
 		System.out.println("Enter the name of the client (owner of the pets)");
 		String name=reader.nextLine();
@@ -158,7 +199,11 @@ public class Main{
 				System.out.println("Enter the weight of the pet");
 				double weighp= reader.nextDouble();
 				reader.nextLine();
-				Pet newPet= new Pet(namePet,typeOfPet,age,weighp,newClient);
+				System.out.println("Enter the height of the pet");
+				int height= reader.nextInt();
+				reader.nextLine();
+				
+				Pet newPet= new Pet(namePet,typeOfPet,age,weighp,height,newClient);
 				newClient.addPets(newPet);
 				MyLittlePet.addClient(newClient);
 				System.out.println("-------------------------------------------\n");
@@ -228,7 +273,9 @@ public class Main{
 					newClinic.addDrugs(temporalDrug);
 				}
 				MyLittlePet.hospitalizeAPet(newClinic);
-				System.out.println("The pet was hospitalized successfully");
+				System.out.println("-------------------------------------------\n");
+				System.out.println("|  The pet was hospitalized successfully  |\n");
+				System.out.println("--------------------------------------------n");
 				stop = 1;
 			}
 			else{
@@ -257,6 +304,7 @@ public class Main{
 			}
 		}
 	}
+	
 	public void dischargePet(){
 		if(MyLittlePet.numberRoomsAvailable() == 8){
 			System.out.println("There is not pets hospitalized");
@@ -288,7 +336,10 @@ public class Main{
 				MyLittlePet.addHistorys(MyLittlePet.getMinis()[option-1].getHistory());
 				MyLittlePet.availabilityRoom(option, true);
 				MyLittlePet.getMinis()[option-1].setHistory(null);
-				System.out.println("The pet was discharge successfully");
+				System.out.println("-------------------------------------------\n");
+				System.out.println("|   The pet was discharge successfully     |\n");
+				System.out.println("--------------------------------------------n");
+				
 				error = 1;
 			}
 		}
@@ -324,10 +375,92 @@ public class Main{
 			System.out.println(MyLittlePet.eliminateClient(ID));
 		}
 	}
+	
+	
+	public void Earnings(){
+
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Total Earnings: "+MyLittlePet.TotalRevenue());
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Earnings By services ");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("Earnings for hospitalizations: "+MyLittlePet.MyLittlePetEarnings());
+		System.out.println("Earnings for baths: "+MyLittlePet.EarningsVeterinaryServices(1));
+		System.out.println("Earnings for baths to go: "+MyLittlePet.EarningsVeterinaryServices(2));
+		System.out.println("Earnings for dental prophylaxis: "+MyLittlePet.EarningsVeterinaryServices(3));
+		System.out.println("Earnings for cutting nails: "+MyLittlePet.EarningsVeterinaryServices(4));
+		System.out.println("Earnings for vaccinations: "+MyLittlePet.EarningsVeterinaryServices(5));
+		System.out.println("");
+
+	}
+	
+	
+	//new
+	
+	public void registerService(){
+		System.out.println("");
+		System.out.print("Please type the pet's name: ");
+		String petsName = reader.nextLine();
+		System.out.print("Please type the owner's name: ");
+		String name = reader.nextLine();
+		System.out.print("Please type the owner's ID: "); 
+		String id = reader.nextLine();
+		System.out.println("");
+
+		if(MyLittlePet.checkOwner(name, id, petsName)){
+
+			System.out.println("Please select the service to register:");
+			System.out.println("1. Bath.");
+			System.out.println("2. Bath to go.");
+			System.out.println("3. Dental prophylaxis.");
+			System.out.println("4. Cutting nails.");
+			System.out.println("5. Vaccination.");
+			System.out.println("--------------------------------------");
+			System.out.print("|               Type the number: ");
+			System.out.println("--------------------------------------");
+			int serviceSelection = reader.nextInt(); reader.nextLine();
+			
+
+			char serviceChar = MyLittlePet.convertChoise2Char(serviceSelection);
+
+			if(serviceChar != 'a'){
+
+				System.out.println("");
+				System.out.print("Please type the day that the service is taking: "); 
+				int day = reader.nextInt();
+				reader.nextLine();
+				System.out.print("Please type the month that the service is taking: ");
+				int month = reader.nextInt(); 
+				reader.nextLine();
+				System.out.print("Please type the year that the service is taking: ");
+				int year = reader.nextInt(); 
+				reader.nextLine();
+
+					Dates newDateJob = new Dates(day, month, year);
+					Pet clientPet = MyLittlePet.petRelation(name, id, petsName);
+					Service newService = new Service(serviceChar, id, petsName, clientPet, null);
+					MyLittlePet.startServiceVet(name, id, clientPet, newService);
+					System.out.println("----------------------------------------------------\n");
+					System.out.println("|    The service has been successfully registered   |\n");
+					System.out.println("-----------------------------------------------------\n");
+
+
+				}else System.out.println("Invalid date");
+						
+			}
+		else System.out.println("Invalid selection");
+				   
+		}
+		 
+		
+
+	
+	
+
 	public void init(){
 		MyLittlePet = new Veterinary();
 		Client own1= new Client("Adolfo","100","cra 45 # 45-64",3201254);
-		Pet pets= new Pet("srcat",Pet.CAT,5,9.2, own1);
+		Pet pets= new Pet("srcat",Pet.CAT,5,9.2,12.2, own1);
 		MyLittlePet.addClient(own1);
 		own1.addPets(pets);
 		pets.setOwner(own1);
@@ -340,6 +473,21 @@ public class Main{
 		historyC.addDrugs(medicine1);
 		historyC.addDrugs(medicine2);
 		
+		Client own2= new Client("LilPu","23","cra 5 # 45-02 ",3102234);
+		Pet pets2= new Pet("MrDog",Pet.DOG,4,4.3,11.3, own2);
+		MyLittlePet.addClient(own2);
+		own2.addPets(pets2);
+		pets2.setOwner(own2);
+		Dates dateJoin2= new Dates(4, 5, 19);
+		
+		clinicHistory history2 = new clinicHistory(true,"threw up","poisoning",pets2, dateJoin2, null);
+		MyLittlePet.addHistorys(history2);
+		PrescripcionMedical medicineP22= new PrescripcionMedical("Ramipril",2.0,4300,24.0);
+		history2.addDrugs(medicineP22);
+		
+		Dates DateService = new Dates (20, 03, 19);
+		Service thiService = new Service (Service.BATHDOM, "100", "srcat",  pets, DateService);
+		MyLittlePet.startServiceVet("Adolfo", "1006017263", pets, thiService);
 		
 		miniRooms room1 = new miniRooms(true, 1, null);
 		miniRooms room2 = new miniRooms(true, 2, null);
@@ -347,7 +495,7 @@ public class Main{
 		miniRooms room4 = new miniRooms(false, 4, historyC);
 		miniRooms room5 = new miniRooms(true, 5, null);
 		miniRooms room6 = new miniRooms(true, 6, null);
-		miniRooms room7 = new miniRooms(true, 7, null);
+		miniRooms room7 = new miniRooms(false, 7, history2);
 		miniRooms room8 = new miniRooms(true, 8, null);
 		miniRooms[] roomsT = {room1,room2, room3, room4, room5, room6, room7, room8};
 
